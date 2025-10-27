@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: ["main", "master"]
+  pull_request:
+
+jobs:
+  client:
+    name: Client build, lint és tesztek
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+    steps:
+      - name: Forráskód kicsekkolása
+        uses: actions/checkout@v4
+      - name: Node.js beállítása
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+          cache: "npm"
+      - name: Függőségek telepítése
+        run: npm install
+      - name: Build futtatása
+        run: npm run build
+      - name: ESLint
+        run: npm run lint
+      - name: Prettier ellenőrzés
+        run: npm run format:check
+      - name: Tesztek futtatása
+        run: npm test
+
+  server:
+    name: Szerver build, lint és tesztek
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: server
+    steps:
+      - name: Forráskód kicsekkolása
+        uses: actions/checkout@v4
+      - name: Python beállítása
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Függőségek telepítése
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -e .
+      - name: Ruff lint
+        run: make lint
+      - name: Black formázás ellenőrzése
+        run: make format-check
+      - name: Pytest
+        run: make test

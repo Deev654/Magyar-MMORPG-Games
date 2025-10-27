@@ -1,0 +1,18 @@
+# Node
+client/node_modules/
+client/dist/
+client/.vite/
+
+# Python
+server/.venv/
+server/__pycache__/
+server/.mypy_cache/
+
+# Coverage és reportok
+coverage/
+*.lcov
+
+# Editor
+.idea/
+.vscode/
+.DS_Store

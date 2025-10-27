@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discord szerver
+    url: https://discord.gg/magyar-mmorpg
+    about: Kérdések, gyors egyeztetések.
+  - name: Közösségi fórum
+    url: https://forum.magyar-mmorpg.hu
+    about: Hosszabb megbeszélések és visszajelzések.
