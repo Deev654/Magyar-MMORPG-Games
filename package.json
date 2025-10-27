@@ -1,0 +1,12 @@
+{
+  "name": "magyar-mmorpg-client",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Prototype MMORPG client with modular systems and tooling.",
+  "scripts": {
+    "start": "node src/main.js",
+    "test": "node --test \"tests/**/*.js\""
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
