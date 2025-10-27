@@ -7,11 +7,11 @@ export class StateSynchronizer {
 
   start(...modules) {
     this.handlers = modules.filter(Boolean);
-    this.networkClient.on('sent', this.listener);
+    this.networkClient.on('message', this.listener);
   }
 
   stop() {
-    this.networkClient.off('sent', this.listener);
+    this.networkClient.off('message', this.listener);
     this.handlers = [];
   }
 

@@ -28,6 +28,13 @@ export class NetworkClient extends EventEmitter {
     await delay(1);
     this.emit('sent', message);
   }
+
+  receive(message) {
+    if (!this.connected) {
+      throw new Error('Cannot receive while disconnected');
+    }
+    this.emit('message', message);
+  }
 }
 
 function delay(ms) {

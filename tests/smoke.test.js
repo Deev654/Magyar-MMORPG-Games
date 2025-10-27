@@ -54,7 +54,7 @@ describe('smoke test', () => {
 
     sync.start(characters, inventory, ui);
 
-    await network.send({
+    network.receive({
       type: 'stateUpdate',
       payload: {
         characters: [

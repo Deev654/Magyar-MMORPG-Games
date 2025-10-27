@@ -55,6 +55,12 @@ export class CharacterModule {
       }
 
       existing.position = { ...charState.position };
+      if (this.engine?.updateSprite) {
+        this.engine.updateSprite(existing.spriteId, {
+          x: charState.position.x,
+          y: charState.position.y,
+        });
+      }
       this.eventBus.emitEvent('characterUpdated', existing);
     });
   }

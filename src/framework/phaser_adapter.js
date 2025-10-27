@@ -28,6 +28,17 @@ export class PhaserAdapter extends EventEmitter {
     return sprite;
   }
 
+  updateSprite(id, updates) {
+    const sprite = this.sceneGraph.get(id);
+    if (!sprite) return null;
+
+    Object.assign(sprite, updates);
+    if (typeof this.runtime.updateSprite === 'function') {
+      this.runtime.updateSprite(sprite, updates);
+    }
+    return sprite;
+  }
+
   destroySprite(id) {
     const sprite = this.sceneGraph.get(id);
     if (sprite) {
@@ -54,6 +65,9 @@ function createFallbackRuntime() {
         y,
         metadata: {},
       };
+    },
+    updateSprite(sprite, updates) {
+      Object.assign(sprite, updates);
     },
     destroySprite(sprite) {
       sprite.destroyed = true;
